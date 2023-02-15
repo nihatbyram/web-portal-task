@@ -4,8 +4,6 @@ This repository is a playground for your submission which should use PHP in the 
 
 Before getting started, please hit the `Use this template` button to create a new repository on which you commit and push your code regularly for the task below. Once you are done, please mail us the link to your repository.
 
-If you encounter a problem or have questions about the task, feel free to email me under <dbutemann@vero.de>.
-
 Good luck and have fun ☘️
 
 # Task
