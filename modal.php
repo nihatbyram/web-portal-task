@@ -215,7 +215,7 @@ echo "$day  $monthName  $year";
  <script src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
  <script src="https://cdn.tailwindcss.com/3.1.8"></script>
 
-	<!-- JavaScript ile devamını oku fonksiyonu -->
+	<!-- JavaScript files here -->
 	
 
 
