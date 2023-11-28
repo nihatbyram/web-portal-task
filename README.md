@@ -37,7 +37,12 @@ Try opening the modal window to select an image.
 
 ## Changelog
 28.11.2023
+
 In this version, some folders have been reorganized.
-Improvements have been made to the Tasks tab frontend
+
+Improvements have been made to the Tasks tab frontend.
+
 You can now see the total number of tasks.
+
 A warning message "Color not assigned" has been added to tasks without color assignment.
+
