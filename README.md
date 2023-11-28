@@ -46,3 +46,4 @@ You can now see the total number of tasks.
 
 A warning message "Color not assigned" has been added to tasks without color assignment.
 
+"Dark mode" has been added.
