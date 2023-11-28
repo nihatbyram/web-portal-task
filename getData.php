@@ -1,7 +1,4 @@
 <?php
-
-// PERMISSON
-
 $curl = curl_init();
 curl_setopt_array($curl, [
     CURLOPT_URL => "https://api.baubuddy.de/index.php/login",
