@@ -1,6 +1,7 @@
 <?php
-
+$loopCount=0;
 // PERMISSON
+
 $curl = curl_init();
 curl_setopt_array($curl, [
     CURLOPT_URL => "https://api.baubuddy.de/index.php/login",
@@ -52,7 +53,7 @@ if ($err) {
         $data = json_decode($response, true);
     }
 }
-
+ 
 ?>
 
 <!DOCTYPE html>
@@ -61,11 +62,11 @@ if ($err) {
   <meta charset="UTF-8">
   <title>VERO Digital Solutions - API-PHP-JS-HTML Tasks</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./assets/style.css">
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
+
 <div class="app-container">
   <div class="app-header">
 	   <style>
@@ -76,7 +77,7 @@ if ($err) {
         }
     </style>
     <div class="app-header-left">
-      <span>    <img src="logo.png" alt="Logo VERO">
+      <span>    <img src="./img/logo.png" alt="Logo VERO">
 </span>
       <p class="app-name">VERO 2023 - 2024</p>
       <div class="search-wrapper">
@@ -110,7 +111,7 @@ if ($err) {
             txtValue = header.textContent || header.innerText;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1 || subheader.innerText.toUpperCase().indexOf(filter) > -1) {
-                divs[i].style.display = "block"; // Değişiklik burada
+                divs[i].style.display = "block"; // changing is here
             } else {
                 divs[i].style.display = "none";
 				 console.log("clicked search button auto");
@@ -204,22 +205,35 @@ echo "$day  $monthName  $year";
 		  </p>
       </div>
       <div class="projects-section-line">
-      <!--  <div class="projects-status">
+ <div class="projects-status">
+              
           <div class="item-status">
-            <span class="status-number">2
-			  
-			  </span>
-            <span class="status-type">In Progress</span>
+            <span class="status-number">
+			
+			
+			<?php
+
+$loopCount = 0;
+
+foreach ($data as $row) {
+        $loopCount++;
+
+    
+}
+
+
+echo " $loopCount";
+?>
+			
+			
+			
+			
+			
+			
+			</span>
+            <span class="status-type">Total Tasks</span>
           </div>
-          <div class="item-status">
-            <span class="status-number">3</span>
-            <span class="status-type">Upcoming</span>
-          </div>
-          <div class="item-status">
-            <span class="status-number">8</span>
-            <span class="status-type">Total Projects</span>
-          </div>
-        </div> -->
+        </div> 
         <div class="view-actions">
           <button class="view-btn list-view" title="List View">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
@@ -240,7 +254,7 @@ echo "$day  $monthName  $year";
         </div>
       </div>
       <div class="project-boxes jsGridView" >
-		   <?php foreach ($data as $row): ?>
+		 <?php foreach ($data as $row): ?>
         <div class="project-box-wrapper" >
           <div class="project-box" style="background-color:<?php echo $row['colorCode']; ?>">
             <div class="project-box-header" >
@@ -354,13 +368,13 @@ echo "$day  $monthName  $year";
               </svg>
             </button>
           </div>
-          <div class="days-left" style="color: <?php echo $row['colorCode']; ?>">
-         <?php echo $row['colorCode']; ?>
-          </div>
+         <div class="days-left" style="color: <?php echo !empty($row['colorCode']) ? $row['colorCode'] : 'white'; ?>">
+    <?php echo !empty($row['colorCode']) ? $row['colorCode'] : 'Color Not Assigned'; ?>
+</div>
         </div>
       </div>
     </div>
-		  <?php endforeach; ?>
+		  <?php endforeach; ?> 
 		  </div>
 </div>
 
@@ -371,8 +385,8 @@ echo "$day  $monthName  $year";
 </div>
 
 <!-- partial -->
-  <script  src="./script.js"></script>
-  <script  src="./modal.js"></script>
+  <script  src="./js/script.js"></script>
+  <script  src="./js/modal.js"></script>
 	<script src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 <script src="https://cdn.tailwindcss.com/3.1.8"></script>
 
@@ -387,7 +401,7 @@ echo "$day  $monthName  $year";
             location.reload();
         }, 3600000); //1 hour later renew
 
-        // Geçici uyarı gösterme fonksiyonu
+        // alert showing
         function showReloadAlert() {
             var alertDiv = document.createElement('div');
             alertDiv.innerHTML = 'Data has been updated. Page is refreshing...';

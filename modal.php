@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <title>VERO Digital Solutions - API-PHP-JS-HTML Tasks</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./assets/style.css">
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
+
 <div class="app-container">
   <div class="app-header">
     <div class="app-header-left">
@@ -147,7 +147,7 @@ echo "$day  $monthName  $year";
       rel="stylesheet"
     />
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="up-style.css" />
+    <link rel="stylesheet" href="./assets/up-style.css" />
 
   <body>
     <div class="container">
@@ -161,22 +161,16 @@ echo "$day  $monthName  $year";
                         </button>
     </div>
     <!-- Script -->
-    <script src="up-script.js"></script>
+    <script src="./js/up-script.js"></script>
   </body>
 
 <!-- partial -->
-  <script  src="./up-script.js"></script>
+  <script  src="./js/up-script.js"></script>
 					
 					
 					
 					
-                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" @click="open = false">
-                            Deactivate
-                        </button>
-                       
                    
-                </div>
 
             </div>
         </div>
@@ -210,12 +204,12 @@ echo "$day  $monthName  $year";
 </div>
 
 <!-- partial -->
-  <script  src="./script.js"></script>
-  <script  src="./modal.js"></script>
+  <script  src="./js/script.js"></script>
+  <script  src="./js/modal.js"></script>
  <script src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
  <script src="https://cdn.tailwindcss.com/3.1.8"></script>
 
-	<!-- JavaScript files here -->
+	<!-- JavaScript ile devamını oku fonksiyonu -->
 	
 
 
