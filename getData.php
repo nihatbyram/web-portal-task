@@ -1,4 +1,7 @@
 <?php
+
+// PERMISSON
+
 $curl = curl_init();
 curl_setopt_array($curl, [
     CURLOPT_URL => "https://api.baubuddy.de/index.php/login",
@@ -19,7 +22,7 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-    echo "cURL Error #:" . $err;
+    echo "cURL Error (Auth) #:" . $err;
 } else {
     // auth
     $access_token = json_decode($response, true)["oauth"]["access_token"];
@@ -41,14 +44,16 @@ if ($err) {
     ]);
     $response = curl_exec($curl);
     $err = curl_error($curl);
+    $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE); // HTTP durum kodunu al
+
     curl_close($curl);
 
     if ($err) {
-        echo "cURL Error #:" . $err;
+        echo "cURL Error (API) #:" . $err;
+    } elseif ($http_code != 200) {
+        echo "API Error: HTTP Status Code #" . $http_code;
     } else {
-        
         $data = json_decode($response, true);
     }
 }
- 
 ?>

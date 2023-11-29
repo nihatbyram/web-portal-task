@@ -1,5 +1,107 @@
 <?php include "./getData.php"; ?>
 <!DOCTYPE html>
+
+       
+        <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<style>
+/* Temel modal stil */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+/* Stilize edilmiş hata modali */
+.error-modal {
+    background-color: #ff6961; /* Kırmızı tonu */
+    color: #fff; /* Beyaz renk */
+}
+
+/* Stilize edilmiş başarı modali */
+.success-modal {
+    background-color: #77dd77; /* Yeşil tonu */
+    color: #fff; /* Beyaz renk */
+}
+</style>
+
+<script>
+// Function to show a modal with a message
+function showModal(message, modalClass) {
+    // Create a div element for the modal
+    var modalDiv = $('<div class="modal ' + modalClass + '"></div>').text(message);
+
+    // Append the modal to the body
+    $('body').append(modalDiv);
+
+    // Automatically hide the modal after 5 seconds
+    setTimeout(function() {
+        modalDiv.fadeOut('slow', function() {
+            // Remove the modal div after fading out
+            $(this).remove();
+        });
+    }, 5000);
+}
+
+// Function to show a success modal
+function showSuccess(message) {
+    showModal(message, 'success-modal');
+}
+
+// Function to show an error modal
+function showError(message) {
+    showModal(message, 'error-modal');
+}
+
+// Function to fetch data from a sample API
+function fetchDataAndUpdateTable() {
+    // Simulate a successful AJAX request to JSONPlaceholder API
+    var apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+
+    $.ajax({
+         url: 'getData.php',
+        type: 'GET',
+        success: function(data) {
+            // Call the function to update the table
+            updateTable(data);
+
+            // Display a success modal
+            showSuccess('Data successfully fetched and table updated.');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Data retrieval error:', textStatus, errorThrown);
+
+            // Display an error modal
+            showError('Error fetching data. Please check the console for details.');
+        }
+    });
+}
+
+// Function to update the table
+function updateTable(data) {
+    // Implement the logic to update the table here
+    // For example, you can iterate over the data and update HTML elements
+    // ...
+
+    console.log('Table updated with new data:', data);
+}
+
+// Fetch data and update the table every 30 seconds
+setInterval(fetchDataAndUpdateTable, 7 * 1000);
+
+// Initial data fetch and table update
+fetchDataAndUpdateTable();
+</script>
+
+
+
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
@@ -26,12 +128,8 @@
       <div class="search-wrapper">
         <input class="search-input" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search">
 		 
-		    <!-- auto renew -->
-    <script>
-        setInterval(function() {
-         
-        }, 60000); // 60 mins
-    </script>
+		
+   
 		  
 		  
      <button onclick="searchDiv()">  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
@@ -177,6 +275,96 @@ echo " $loopCount";
             <span class="status-type">Total Tasks</span>
           </div>
         </div> 
+		<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<style>
+/* Stilize edilmiş hata mesajları */
+.error-message {
+    background-color: #ff6961; /* Kırmızı tonu */
+    color: #fff; /* Beyaz renk */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Stilize edilmiş başarı mesajları */
+.success-message {
+    background-color: #77dd77; /* Yeşil tonu */
+    color: #fff; /* Beyaz renk */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Uyarılar için genel stil */
+.notification-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: none; /* Başlangıçta gizli */
+}
+</style>
+
+<script>
+// Function to show a notification message
+function showNotification(message, type) {
+    // Check if there is already a notification visible
+    if ($('#notification-container .notification-message').length === 0) {
+        // Create a div element for the notification message
+        var notificationDiv = $('<div class="notification-message"></div>').addClass(type).text(message);
+
+        // Append the notification div to the specified container
+        $('#notification-container').prepend(notificationDiv);
+
+        // Show the notification
+        notificationDiv.fadeIn('slow');
+
+        // Automatically hide the notification after 5 seconds
+        setTimeout(function() {
+            notificationDiv.fadeOut('slow', function() {
+                // Remove the notification div after fading out
+                $(this).remove();
+            });
+        }, 2000);
+    }
+}
+
+// Function to fetch data and update the table
+function fetchDataAndUpdateTable() {
+    $.ajax({
+        url: 'getData.php',
+        type: 'GET',
+        success: function(data) {
+            // Call the function to update the table
+            updateTable(data);
+
+            // Display a success message
+            showNotification('Data successfully fetched and table updated.', 'success-message');
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Data retrieval error:', textStatus, errorThrown);
+
+            // Display an error message
+            showNotification('Error fetching data. Please check the network connect or the console for details.', 'error-message');
+        }
+    });
+}
+
+// Fetch data and update the table every 20 minutes
+setInterval(function() {
+    fetchDataAndUpdateTable();
+}, 7 * 1000);
+
+// Initial data fetch and table update
+fetchDataAndUpdateTable();
+</script>
+
+<!-- Container to hold the notification messages -->
+<div id="notification-container"></div>
+
+		
+		
         <div class="view-actions">
           <button class="view-btn list-view" title="List View">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
@@ -334,39 +522,10 @@ echo " $loopCount";
 <script src="https://cdn.tailwindcss.com/3.1.8"></script>
 
 	
-  <script>
-      
-        setInterval(function() {
-            // show alert
-            showReloadAlert();
-            
-            // page reload
-            location.reload();
-        }, 3600000); //1 hour later renew
+  <!-- jQuery'yi ekleyin -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-        // alert showing
-        function showReloadAlert() {
-            var alertDiv = document.createElement('div');
-            alertDiv.innerHTML = 'Data has been updated. Page is refreshing...';
-            alertDiv.style.position = 'fixed';
-            alertDiv.style.top = '0';
-            alertDiv.style.left = '0';
-            alertDiv.style.width = '100%';
-            alertDiv.style.backgroundColor = '#10c23c'; // change bg color
-            alertDiv.style.padding = '10px';
-            alertDiv.style.textAlign = 'center';
-            alertDiv.style.color = '#721c24'; // text color
-            alertDiv.style.zIndex = '1000';
 
-            // warning
-            document.body.appendChild(alertDiv);
-
-            // remove warning 3s later.
-            setTimeout(function() {
-                alertDiv.remove();
-            }, 3000);
-        }
-    </script>
 
 
 
