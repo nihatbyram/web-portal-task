@@ -354,7 +354,7 @@ function fetchDataAndUpdateTable() {
 // Fetch data and update the table every 20 minutes
 setInterval(function() {
     fetchDataAndUpdateTable();
-}, 7 * 1000);
+}, 60 * 60 * 1000);
 
 // Initial data fetch and table update
 fetchDataAndUpdateTable();
