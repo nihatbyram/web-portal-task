@@ -1,8 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
+window.onload=function(){
+	document.addEventListener('DOMContentLoaded', function () {
   var modeSwitch = document.querySelector('.mode-switch');
 
-  modeSwitch.addEventListener('click', function () {                     document.documentElement.classList.toggle('dark');
-    modeSwitch.classList.toggle('active');
+modeSwitch.addEventListener('click', function () {
+	document.documentElement.classList.toggle('dark');
+		modeSwitch.classList.toggle('active');
   });
   
   var listView = document.querySelector('.list-view');
@@ -23,3 +25,4 @@ document.addEventListener('DOMContentLoaded', function () {
     projectsList.classList.add('jsGridView');
   });
 });
+}

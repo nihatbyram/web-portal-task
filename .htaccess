@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect all HTTP traffic to HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # ForceType to text/html for files without an extension
+    <FilesMatch "^[^.]+$">
+        ForceType text/html
+    </FilesMatch>
+
+    # Set index.php as the default page
+    DirectoryIndex index.php
+</IfModule>

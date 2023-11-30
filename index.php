@@ -1,247 +1,12 @@
-<?php include "./getData.php"; ?>
+<?php include ("./sys/getData.php"); ?>
 <!DOCTYPE html>
-
-       
-        <!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<style>
-/* Temel modal stil */
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-}
-
-/* Stilize edilmiş hata modali */
-.error-modal {
-    background-color: #ff6961; /* Kırmızı tonu */
-    color: #fff; /* Beyaz renk */
-}
-
-/* Stilize edilmiş başarı modali */
-.success-modal {
-    background-color: #77dd77; /* Yeşil tonu */
-    color: #fff; /* Beyaz renk */
-}
-</style>
-
-<script>
-// Function to show a modal with a message
-function showModal(message, modalClass) {
-    // Create a div element for the modal
-    var modalDiv = $('<div class="modal ' + modalClass + '"></div>').text(message);
-
-    // Append the modal to the body
-    $('body').append(modalDiv);
-
-    // Automatically hide the modal after 5 seconds
-    setTimeout(function() {
-        modalDiv.fadeOut('slow', function() {
-            // Remove the modal div after fading out
-            $(this).remove();
-        });
-    }, 5000);
-}
-
-// Function to show a success modal
-function showSuccess(message) {
-    showModal(message, 'success-modal');
-}
-
-// Function to show an error modal
-function showError(message) {
-    showModal(message, 'error-modal');
-}
-
-// Function to fetch data from a sample API
-function fetchDataAndUpdateTable() {
-    // Simulate a successful AJAX request to JSONPlaceholder API
-    var apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
-
-    $.ajax({
-         url: 'getData.php',
-        type: 'GET',
-        success: function(data) {
-            // Call the function to update the table
-            updateTable(data);
-
-            // Display a success modal
-            showSuccess('Data successfully fetched and table updated.');
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Data retrieval error:', textStatus, errorThrown);
-
-            // Display an error modal
-            showError('Error fetching data. Please check the console for details.');
-        }
-    });
-}
-
-// Function to update the table
-function updateTable(data) {
-    // Implement the logic to update the table here
-    // For example, you can iterate over the data and update HTML elements
-    // ...
-
-    console.log('Table updated with new data:', data);
-}
-
-// Fetch data and update the table every 30 seconds
-setInterval(fetchDataAndUpdateTable, 7 * 1000);
-
-// Initial data fetch and table update
-fetchDataAndUpdateTable();
-</script>
-
-
-
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>VERO Digital Solutions - API-PHP-JS-HTML Tasks</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="./assets/style.css">
-
-</head>
-<body>
-
-<div class="app-container">
-  <div class="app-header">
-	   <style>
-        /* Logo border CSS */
-        img {
-            border-radius: 25px; /* edge (px ) */
-			box-shadow:0px 13px 39px rgba(1, 0, 0, 0.6);
-        }
-    </style>
-    <div class="app-header-left">
-      <span>    <img src="./img/logo.png" alt="Logo VERO">
-</span>
-      <p class="app-name">VERO 2023 - 2024</p>
-      <div class="search-wrapper">
-        <input class="search-input" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search">
-		 
-		
-   
-		  
-		  
-     <button onclick="searchDiv()">  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
-          <defs></defs>
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="M21 21l-4.35-4.35"></path>
-        </svg>
-		  </button>
-		  
-		<script>
-    function searchTable() {
-        var input, filter, divs, header, subheader, i, txtValue;
-        input = document.getElementById("searchInput");
-        filter = input.value.toUpperCase();
-        divs = document.getElementsByClassName("project-box-wrapper");
-
-        for (i = 0; i < divs.length; i++) {
-            header = divs[i].getElementsByClassName("box-content-header")[0];
-            subheader = divs[i].getElementsByClassName("box-content-subheader")[0];
-            txtValue = header.textContent || header.innerText;
-
-            if (txtValue.toUpperCase().indexOf(filter) > -1 || subheader.innerText.toUpperCase().indexOf(filter) > -1) {
-                divs[i].style.display = "block"; // changing is here
-            } else {
-                divs[i].style.display = "none";
-				 console.log("clicked search button auto");
-            }
-        }
-    }
-
-    function searchDiv() {
-        
-        console.log("clicked search button auto");
-    }
-</script>
-
-		  
-      </div>
-    </div>
-    <div class="app-header-right">
-      <button class="mode-switch" title="Switch Theme">
-        <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-          <defs></defs>
-          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-        </svg>
-      </button>
-		
-      <button class="add-btn" title="Add New Project">
-        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <line x1="5" y1="12" x2="19" y2="12" /></svg>
-      </button>
-      <button class="notification-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-          <path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
-      </button>
-      <button class="profile-btn">
-        <img src="https://media.licdn.com/dms/image/C4E03AQEdz4bykfdeOw/profile-displayphoto-shrink_800_800/0/1602689948856?e=1706745600&v=beta&t=QCSeg4o0cjLhviEIYQexcljT0k1p5ZD0dryL8cWf4cc" />
-        <span>Nihat Bayram</span>
-      </button>
-    </div>
-  
-  </div>
-  <div class="app-content">
-    <div class="app-sidebar">
-      <a href="" class="app-sidebar-link active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" /></svg>
-      </a>HOME
-      <a href="modal.php" class="app-sidebar-link">
-        <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-pie-chart" viewBox="0 0 24 24">
-          <defs />
-          <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z" />
-        </svg>
-      </a>MODAL
-      <a href="" class="app-sidebar-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-          <line x1="16" y1="2" x2="16" y2="6" />
-          <line x1="8" y1="2" x2="8" y2="6" />
-          <line x1="3" y1="10" x2="21" y2="10" /></svg>
-      </a>
-      <a href="" class="app-sidebar-link">
-        <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-settings" viewBox="0 0 24 24">
-          <defs />
-          <circle cx="12" cy="12" r="3" />
-          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
-        </svg>
-      </a>
-    </div>
+<?php include "./layout.php";?>
     <div class="projects-section">
       <div class="projects-section-header">
         <p>Tasks</p>
         <p class="time">
 			
-<?php
-// Get the current date
-$today = getdate();
-
-// Get the day, month, and year
-$day = $today['mday'];
-$month = $today['mon'];
-$year = $today['year'];
-
-// Get the name of the month
-$monthName = date('F', mktime(0, 0, 0, $month, 1, $year));
-
-// Display on the screen
-echo "$day  $monthName  $year";
-?>
+<?php include "./getDate.php";?>
 
 		  </p>
       </div>
@@ -249,60 +14,45 @@ echo "$day  $monthName  $year";
  <div class="projects-status">
               
           <div class="item-status">
-            <span class="status-number">
-			
-			
+            <span class="status-number">		
 			<?php
 
 $loopCount = 0;
 
 foreach ($data as $row) {
         $loopCount++;
-
-    
 }
-
-
 echo " $loopCount";
 ?>
-			
-			
-			
-			
-			
-			
 			</span>
             <span class="status-type">Total Tasks</span>
           </div>
         </div> 
-		<!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
 <style>
-/* Stilize edilmiş hata mesajları */
+/* error message */
 .error-message {
-    background-color: #ff6961; /* Kırmızı tonu */
-    color: #fff; /* Beyaz renk */
+    background-color: #ff6961; /* red */
+    color: #fff; /* white */
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
 
-/* Stilize edilmiş başarı mesajları */
+/* Success message */
 .success-message {
-    background-color: #77dd77; /* Yeşil tonu */
-    color: #fff; /* Beyaz renk */
+    background-color: #77dd77; /* green	*/
+    color: #fff; /* white */
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
 
-/* Uyarılar için genel stil */
+/* notfy. message */
 .notification-message {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    display: none; /* Başlangıçta gizli */
+    display: none; /* hide */
 }
 </style>
 
@@ -333,7 +83,7 @@ function showNotification(message, type) {
 // Function to fetch data and update the table
 function fetchDataAndUpdateTable() {
     $.ajax({
-        url: 'getData.php',
+        url: './sys/getData.php',
         type: 'GET',
         success: function(data) {
             // Call the function to update the table
@@ -354,7 +104,7 @@ function fetchDataAndUpdateTable() {
 // Fetch data and update the table every 20 minutes
 setInterval(function() {
     fetchDataAndUpdateTable();
-}, 7 * 1000);
+}, 60 * 60 * 1000);
 
 // Initial data fetch and table update
 fetchDataAndUpdateTable();
@@ -521,8 +271,7 @@ fetchDataAndUpdateTable();
 	<script src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 <script src="https://cdn.tailwindcss.com/3.1.8"></script>
 
-	
-  <!-- jQuery'yi ekleyin -->
+		<!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
