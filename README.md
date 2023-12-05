@@ -1,6 +1,6 @@
 # Web Portal
 Live Latest Version (v1.3)
- ```bash
+
    https://vero.nihatbayram.com.tr
 
 Project Description:
