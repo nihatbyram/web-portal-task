@@ -1,7 +1,6 @@
 # Web Portal
 Live Latest Version (v1.3)
-
-   https://vero.nihatbayram.com.tr
+https://vero.nihatbayram.com.tr
 
 Project Description:
 
