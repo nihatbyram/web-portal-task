@@ -62,7 +62,7 @@ function fetchDataAndUpdateTable() {
     var apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
 
     $.ajax({
-         url: 'getData.php',
+         url: './sys/getData.php',
         type: 'GET',
         success: function(data) {
             // Call the function to update the table
