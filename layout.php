@@ -89,8 +89,8 @@ function updateTable(data) {
     console.log('Table updated with new data:', data);
 }
 
-// Fetch data and update the table every 30 seconds
-setInterval(fetchDataAndUpdateTable, 7 * 1000);
+// Fetch data and update the table every 1 hour
+setInterval(fetchDataAndUpdateTable, 60 * 60 * 1000);
 
 // Initial data fetch and table update
 fetchDataAndUpdateTable();
